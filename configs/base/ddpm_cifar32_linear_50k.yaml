@@ -1,0 +1,5 @@
+# configs/base/ddpm_cifar32_linear_50k.yaml
+# Optional shared base config for CIFAR-10 32x32 DDPM baseline.
+# This can be wired into your study configs via defaults/imports
+# once you want to factor things out.
+
