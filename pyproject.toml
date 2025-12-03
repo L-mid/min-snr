@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "min-snr"
+version = "0.0.1"
+description = "Min-SNR loss reweighting vs vanilla DDPM study wrapper around ablation-harness."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT" 
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "matplotlib",
+  "pandas",
+]
+
+
+[tool.setuptools]
+packages = ["min_snr"]
+
+
+[tool.pytest.ini_options]
+python_files = ["test_*.py"]
+testpaths = ["tests"]

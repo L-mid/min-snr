@@ -22,5 +22,5 @@ echo "[run_e1] Using OUT_DIR=${OUT_DIR}"
 mkdir -p "${OUT_DIR}"
 
 python -m ablation_harness.cli run \
-  --config configs/study/MS1_min_snr/E1_baseline_linear.yaml \
+  --config configs/study/MS1_min_snr/e1/e1_baseline_linear.yaml \
   --out_dir "${OUT_DIR}"
