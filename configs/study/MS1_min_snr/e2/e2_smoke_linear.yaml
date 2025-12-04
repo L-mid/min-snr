@@ -1,0 +1,72 @@
+schema: study/v1
+study_name: min_snr
+out_dir: "runs_test/"
+seed: 1234
+metric: train/loss
+
+_experiment:
+  name: "E2-smoke-linear-test-minsnr"
+
+device: null
+deterministic: true
+clean_run: true
+
+data:
+  dataset: "cifar10"
+  subset: 16       # or null if subset not supported
+  batch_size: 4
+  num_workers: 0
+  shuffle: true
+
+model:
+  name: "unet_cifar32"
+
+ema:
+  enabled: false
+
+diffusion:
+  enabled: true
+  beta_schedule: "linear"
+
+optim:
+  optimizer: adam
+  lr: 1.0e-4
+
+train:
+  total_steps: 5
+  grad_clip: 1.0
+  amp: false
+
+eval:
+  quick: true
+
+  grid:
+    enabled: false
+
+  kid:
+    enabled: false
+
+  fid_milestone:
+    enabled: false
+
+  final:
+    enabled: false
+
+loss:
+  weighting: "minsnr"
+  minsnr_gamma: 5.0
+
+logging:
+  enable: true
+  backends: []
+  log_every_n_steps: 1
+
+  wandb:
+    mode: disabled
+    project: "min_snr"
+    run_name: "E2-smoke"
+    tags: []
+    notes: "Smoke test for Min-SNR."
+
+  tensorboard:
+    flush_secs: 10
