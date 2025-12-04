@@ -1,75 +1,52 @@
 # E1 – Results: Baseline DDPM, linear β, 50k steps (CIFAR-10 32×32)
 
-## 1. Summary
+## Summary
 
-- **Config:** `configs/study/MS1_min_snr/E1_baseline_linear.yaml`
-- **Out dir:** `runs/E1_baseline`
-- **Question:** establish a solid vanilla DDPM baseline for later Min-SNR comparison.
+- **Config:** `configs/study/MS1_min_snr/e1/e1_baseline_linear.yaml`
+- **Idea:** establish a solid vanilla DDPM baseline for later Min-SNR comparison.
 - **Outcome (short):**
-  - Final FID@10k (NFE=50): **TODO_FID**  
-  - Training completed all 50k steps: **TODO_YES_NO**
-  - Any notable behavior (e.g. early plateaus, instability): **TODO_NOTES**
+  - Final FID@10k (NFE=50): **206.48**
+  - Training completed all 50k steps: Yes.
+  - Any notable behavior (e.g. early plateaus, instability): None, matched e1 linear baseline.
 
 ---
 
-## 2. Quantitative results
+## Quantitative results
 
 ### 2.1 Final metrics
 
 | Metric                         | Value      | Notes                    |
 |--------------------------------|------------|--------------------------|
-| FID@10k (NFE=50, final eval)   | TODO_FID   | From `results.jsonl`     |
-| Best FID@10k (if different)    | TODO_BEST  | Optional                 |
-| Final train loss               | TODO_LOSS  | From `loss.jsonl`        |
+| FID@10k (NFE=50, final eval)   | 206.48   | From `results.jsonl`     |
+| Best FID@10k (if different)    | 206.48  | From `results.jsonl`               |
+| Final train loss               | 0.003  | From `loss.jsonl`        |
 
-Add more rows if you care (e.g. KID, curvature proxy later).
 
-### 2.2 Training dynamics (qualitative)
+### Training dynamics (qualitative)
 
-- Loss curve shape: **TODO_DESCRIPTION** (e.g., “steady decrease, mild noise”).
-- Any obvious signs of divergence / weird spikes: **TODO_DESCRIPTION**.
-- Intermittent FID milestones: **TODO_BRIEF_NOTES**.
+- Loss curve shape: Spiky from low batch size but drops steadily.
+- Spikes from batch 4 (as expected).
+- Intermittent FID milestones: (maybe) increase over time but within noise band, all in the same ballpark.
 
 ---
 
-## 3. Artifacts
+## Artifacts
 
-- **Logs:**
-  - `runs/E1_baseline/.../loss.jsonl`
-  - `runs/E1_baseline/.../results.jsonl`
-
-- **Plots:**
-  - TODO: after you add plot scripts, link:
-    - `docs/assets/E1/loss_curve.png` (planned)
-    - `docs/assets/E1/fid_vs_step.png` (planned)
+- **Plot:**
+    - ![alt text](../../assets/e1/e1_plots/loss_fid_overlay.png)
 
 - **Sample grids:**
-  - Path(s): `runs/E1_baseline/.../grid_*.png` (if generated)
-  - Quick impression of image quality: **TODO_DESCRIPTION**
+  [alt text](../../assets/e1/min-snr-e1/runs/min_snr/min_snr__unet_cifar32__cifar10__adam__lr1e-04__ema1__seed=1077/eval/step_050000/grid/grid.png)
+  
+  - Quick impression of image quality: not tv static, saturated blobs consistent with baseline.
 
 ---
 
-## 4. Interpretation
+## Interpretation
 
-- **Is this a reasonable baseline?**
-  - Does the FID sit in the ballpark of your previous noise-sched E7 baseline?
-  - Any surprises vs expectations?
+- **Reasonable baseline?**
+  - FIDs extremely similar. 
+  - No surprises: deterministic replica
 
-- **Anything to fix before Min-SNR runs?**
-  - Config issues?
-  - Logging / plotting gaps?
-  - Data problems?
+Might want to consider some overall later improvements (model underfits sevearly), but for testing purposes this is fine and expected.
 
-Write a short paragraph or bullet list once you’ve looked at the numbers.
-
----
-
-## 5. Next steps
-
-- If baseline looks sane:
-  - Lock E1 as the baseline row.
-  - Proceed to designing & wiring Min-SNR loss weighting (E2).
-
-- If baseline is off:
-  - Diagnose (data, model, β schedule, stats file, etc.).
-  - Re-run E1 after fixes, and update this file.

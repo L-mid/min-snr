@@ -15,18 +15,24 @@ The goal of this document is to say **exactly what environment** was used when r
 
 ---
 
-## 2. Local setup (recommended)
+## 2. Local setup
 
 From the repo root:
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+source .venv/bin/activate        # Windows powershell: .venv\Scripts\activate
 pip install --upgrade pip
 pip install -e external/ablation-harness
 
 # for tests + plots or if you want to edit stuff:
 pip install -e ".[dev]"
+```
+
+## TORCH PINNED:
+```bash
+pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 \
+    --index-url https://download.pytorch.org/whl/cu121
 ```
 
 
@@ -52,11 +58,16 @@ drive.mount("/content/drive")
 !python -m pip install --upgrade pip
 !python -m pip install -e external/ablation-harness
 
+# ensure to reinstall pinned torch for intended behaviour:
+pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 \
+    --index-url https://download.pytorch.org/whl/cu121
 
-# run a baseline:
+
+# run a baseline!:
 !python -m ablation_harness.cli run \
-    --config configs/study/MS1_min_snr/E1_baseline_linear.yaml \
+    --config configs/study/MS1_min_snr/e1/e1_baseline_linear.yaml \
     --out_dir runs
+
 
 ```
 

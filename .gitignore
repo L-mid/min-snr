@@ -25,7 +25,6 @@ venv/
 # Project runs / outputs
 runs/
 runs_test/
-docs/assets/
 wandb/
 lightning_logs/
 logs/
