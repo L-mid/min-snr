@@ -13,15 +13,24 @@ venv/
 .env
 .ipynb_checkpoints/
 
-# --- Editors / OS ---
-.DS_Store
-Thumbs.db
-.vscode/
+# Editors / OS
 .idea/
+.vscode/
+.DS_Store
 
-# --- Project-specific (big / generated stuff) ---
-runs/
-data/
+# Pytest / cache
+.pytest_cache/
 .cache/
+
+# Project runs / outputs
+runs/
+runs_test/
 wandb/
+lightning_logs/
 logs/
+cifar-10-batches-py/
+*.tar.gz
+
+# Data / stats (optional fine-tuning)
+data/
+

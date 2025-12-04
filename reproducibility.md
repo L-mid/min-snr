@@ -1,16 +1,28 @@
-## REM from C:\Users\grayd\min-snr
+# Reproducibility checklist
 
-REM 1) Create venv (once)
-python -m venv .venv
+This document records the minimal information needed to reproduce the Min-SNR experiments.
 
-REM 2) Activate venv (each new terminal)
-.\.venv\Scripts\activate
+---
 
-REM 3) Upgrade pip (optional)
-python -m pip install --upgrade pip
+## 1. Seeds and determinism
 
-REM 4) Install ablation-harness in editable mode
-python -m pip install -e external\ablation-harness
+- Global training seed: `1077` for full E1 / E2 runs (baseline vs Min-SNR).
+- Smoke test seed: `1234` in `E1_smoke_linear.yaml`.
+- `deterministic: true` is enabled in configs to make runs as stable as practical.
 
+Note: Perfect determinism across different hardware / CUDA / driver versions
+is not guaranteed, but these settings are sufficient for stable comparisons on
+the same setup.
 
+---
 
+## 2. Submodule commit (ablation-harness)
+
+The `external/ablation-harness` submodule is pinned to a specific commit.
+
+To see which one:
+
+```bash
+cd external/ablation-harness
+git rev-parse HEAD
+```

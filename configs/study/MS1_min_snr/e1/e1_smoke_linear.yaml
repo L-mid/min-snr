@@ -1,0 +1,68 @@
+schema: study/v1
+study_name: min_snr
+out_dir: "runs_test/"
+seed: 1234
+metric: train/loss    # just to have something
+
+_experiment:
+  name: "E1-smoke-linear-test"
+
+device: null
+deterministic: true
+clean_run: false       # test can safely delete its own out_dir (one day, not today)
+
+data:
+  dataset: "cifar10"
+  subset: 1024        # small subset if your loader supports this; else use null
+  batch_size: 4
+  num_workers: 0
+  shuffle: true
+
+model:
+  name: "unet_cifar32"
+
+ema:
+  enabled: false      # simpler for smoke
+
+diffusion:
+  enabled: true
+  beta_schedule: "linear"
+
+optim:
+  optimizer: adam
+  lr: 1.0e-4
+
+train:
+  total_steps: 5      # super tiny
+  grad_clip: 1.0
+  amp: false          # avoid amp issues in tests
+
+eval:
+  quick: true
+
+  grid:
+    enabled: false
+
+  kid:
+    enabled: false
+
+  fid_milestone:
+    enabled: false
+
+  final:
+    enabled: false
+
+logging:
+  enable: true
+  backends: []
+  log_every_n_steps: 1
+
+  wandb:
+    mode: disabled
+    project: "min_snr"
+    run_name: "E1-smoke"
+    tags: []
+    notes: "Smoke test only."
+
+  tensorboard:
+    flush_secs: 10
