@@ -42,6 +42,10 @@ train:
   grad_clip: 1.0
   amp: true
 
+loss:
+  weighting: "minsnr"
+  minsnr_gamma: 5.0
+
 eval:
   quick: false
 

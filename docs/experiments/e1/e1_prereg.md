@@ -54,7 +54,6 @@
 
 Commands to run:
    ```bash
-   # example
    python -m ablation_harness.cli run \
      --config configs/study/MS1_min_snr/configs/study/MS1_min_snr/e1/e1_baseline_linear.yaml \
      --out_dir /content/drive/MyDrive/min-snr-e1/runs

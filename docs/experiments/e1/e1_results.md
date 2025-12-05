@@ -13,7 +13,7 @@
 
 ## Quantitative results
 
-### 2.1 Final metrics
+### Final metrics
 
 | Metric                         | Value      | Notes                    |
 |--------------------------------|------------|--------------------------|
@@ -48,5 +48,5 @@
   - FIDs extremely similar. 
   - No surprises: deterministic replica
 
-Might want to consider some overall later improvements (model underfits sevearly), but for testing purposes this is fine and expected.
+Might want to consider some overall later improvements (model underfits sevearly is my guess), but for testing purposes this is fine and expected.
 
