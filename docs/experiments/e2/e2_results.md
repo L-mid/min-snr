@@ -3,7 +3,7 @@
 
 ## Summary
 
-- **Config:** `configs/study/MS1_min_snr/e1/e1_baseline_linear.yaml`
+- **Config:** `configs/study/MS1_min_snr/e2/e2_min_snr_linear.yaml`
 - **Idea:** Compare against DDPM linear baseline. 
 - **Outcome (short):**
   - Final FID@10k (NFE=50): **206.48**
