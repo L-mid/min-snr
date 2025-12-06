@@ -1,5 +1,5 @@
 # E1 – Results: Baseline DDPM, linear β, 50k steps (CIFAR-10 32×32)
-
+ 
 ## Summary
 
 - **Config:** `configs/study/MS1_min_snr/e1/e1_baseline_linear.yaml`
