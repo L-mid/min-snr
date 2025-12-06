@@ -36,7 +36,7 @@ And does the early training trajectory (FID vs step, loss vs step) look like a s
   - Diffusion steps: `num_timesteps: 1000` 
   - Loss: `minsnr_gamma: 5.0`
   - Sampler: `ddpm` at eval, `nfe: 50`
-  - Total steps: `50_000`
+  - Total steps: `10_000`
   - Batch size: `4`
   - Optimizer: `adam`, `lr: 1e-4`
   - EMA: enabled, `decay: 0.999`
@@ -67,4 +67,4 @@ Commands to run:
    ```bash
    python -m ablation_harness.cli run \
      --config configs/study/MS1_min_snr/configs/study/MS1_min_snr/e3/e3_minsnr_gamma5_short.yaml \
-     --out_dir /content/drive/MyDrive/min-snr-e2/runs
+     --out_dir /content/drive/MyDrive/min-snr-e3/runs
