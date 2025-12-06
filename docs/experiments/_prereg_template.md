@@ -43,9 +43,7 @@
 
 ---
 
-## Procedure
-
-1. Command(s) to run:
+## Command(s) to run:
    ```bash
    # example
    python -m ablation_harness.cli run \

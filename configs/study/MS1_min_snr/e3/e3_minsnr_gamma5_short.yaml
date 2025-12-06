@@ -5,7 +5,7 @@ seed: 1077
 metric: val/fid
 
 _experiment:
-  name: "E2-minsnr-linear-full-50k-50nfe"
+  name: "e3-minsnr-linear-short-10k-50nfe"
 
 device: null
 deterministic: true
@@ -20,7 +20,7 @@ data:
 
 model:
   name: "unet_cifar32"
-  # same model as E1
+  # same model as E1/E2
 
 ema:
   enabled: true
@@ -30,27 +30,27 @@ diffusion:
   enabled: true
   beta_schedule: "linear"
   # num_timesteps: 1000
-  # ... keep defaults as in E1
+  # ... keep defaults as in E1/E2
 
 optim:
   optimizer: adam
   lr: 1.0e-4
 
 train:
-  total_steps: 50000
+  total_steps: 10000      # <-- shortened from 50000
   grad_clip: 1.0
   amp: true
 
 loss:
   weighting: "minsnr"
-  minsnr_gamma: 5.0
+  minsnr_gamma: 5.0       # same γ=5 as E2
 
 eval:
   quick: false
 
   grid:
     enabled: true
-    every: 5000
+    every: 5000          # keep same grid cadence as E2 for now
     sampler: ddim
     nfe: 20
     n_samples: 36
@@ -66,7 +66,7 @@ eval:
 
   fid_milestone:
     enabled: true
-    every: 10000
+    every: 2000          # <-- was 10000 in E2; now 2k,4k,6k,8k,10k
     run_if_kid_improved_pct: 0.0
     sampler: ddpm
     nfe: 50
@@ -74,7 +74,7 @@ eval:
     fid_stats: "stats/cifar10_inception_train.npz"
 
   final:
-    enabled: false
+    enabled: true        # <-- was false in E2; now get a final FID@10k
     at_end: true
     sampler: ddpm
     nfe: 50
@@ -89,10 +89,9 @@ logging:
   wandb:
     mode: online
     project: min_snr
-    run_name: "E2-minsnr-linear-full-50k-50nfe"
-    tags: ["E2", "mins- snr", "linear", "50k", "50nfe", "min_snr"]
-    notes: "E2: Min-SNR loss (future), same setup as E1; only loss weighting will change when implemented."
+    run_name: "e3-minsnr-linear-short-10k-50nfe"
+    tags: ["e3", "min-snr", "linear", "10k", "50nfe", "min_snr"]
+    notes: "e3: Min-SNR loss (gamma=5) short 10k run, same as E2 but truncated and with denser early FID."
 
   tensorboard:
     flush_secs: 10
-

@@ -1,5 +1,5 @@
 # E1 – Results: Baseline DDPM, linear β, 50k steps (CIFAR-10 32×32)
-
+ 
 ## Summary
 
 - **Config:** `configs/study/MS1_min_snr/e1/e1_baseline_linear.yaml`
@@ -13,7 +13,7 @@
 
 ## Quantitative results
 
-### 2.1 Final metrics
+### Final metrics
 
 | Metric                         | Value      | Notes                    |
 |--------------------------------|------------|--------------------------|
@@ -48,5 +48,5 @@
   - FIDs extremely similar. 
   - No surprises: deterministic replica
 
-Might want to consider some overall later improvements (model underfits sevearly), but for testing purposes this is fine and expected.
+Might want to consider some overall later improvements (model underfits sevearly is my guess), but for testing purposes this is fine and expected.
 
