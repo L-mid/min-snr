@@ -10,15 +10,12 @@ python tools/plot_loss_fid.py \
 
 current (with names):
 python tools/plot_loss_fid.py \
-  docs/assets/e1/e1_data/loss.jsonl \
-  docs/assets/e1/e1_data/results.jsonl \
-  docs/assets/e2/e2_data/loss.jsonl \
-  docs/assets/e2/e2_data/results.jsonl \
-    docs/assets/e3/e3_data/loss.jsonl \
-  docs/assets/e3/e3_data/results.jsonl \
-  --names e1-linear-50k e2-minsnr-50k e3-minsnr-10k \
-  --out docs/assets/e3/e3_plots/loss_fid_overlay.png
-  
+  docs/assets/e1/e1_data/loss.jsonl docs/assets/e1/e1_data/results.jsonl \
+  docs/assets/e2/e2_data/loss.jsonl docs/assets/e2/e2_data/results.jsonl \
+  docs/assets/e3/e3_data/loss.jsonl docs/assets/e3/e3_data/results.jsonl \
+  docs/assets/e4/e4_data/loss.jsonl docs/assets/e4/e4_data/results.jsonl \
+  --names e1-linear-50k e2-minsnr-50k e3-minsnr-10k e4-minsnr-norm-10k \
+  --out docs/assets/e4/e4_plots/fid_vs_steps_e1e2e4.png
 
 """
 
