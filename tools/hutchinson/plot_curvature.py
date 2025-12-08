@@ -32,8 +32,8 @@ Useage:
 Current:
     python tools/hutchinson/plot_curvature.py \
     docs/assets/e5/e5_data/loss.jsonl \
-    --name e5-baseline-hutch-10k \
-    --out_prefix docs/assets/e5/e5_plots/e5_curvature \
+    --name e6-baseline-hutch-10k \
+    --out_prefix docs/assets/e6/e6_plots/fid_vs_steps_e5e6.png \
     --smooth_window 21
 
 
