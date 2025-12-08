@@ -10,11 +10,10 @@ python tools/plot_loss_fid.py \
 
 current (with names):
 python tools/plot_loss_fid.py \
-  docs/assets/e1/e1_data/loss.jsonl docs/assets/e1/e1_data/results.jsonl \
   docs/assets/e5/e5_data/loss.jsonl docs/assets/e5/e5_data/results.jsonl \
-  --names e1-linear-50k e5-baseline-hutch-10k \
-  --out docs/assets/e5/e5_plots/fid_vs_steps_e1e5.png
-  
+  docs/assets/e6/e6_data/loss.jsonl docs/assets/e6/e6_data/results.jsonl \
+  --names e5-baseline-hutch-10k e6-minsnr-hutch-10k \
+  --out docs/assets/e6/e6_plots/fid_vs_steps_e5e6.png
 """
 
 
