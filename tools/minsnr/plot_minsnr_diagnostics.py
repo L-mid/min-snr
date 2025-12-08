@@ -4,8 +4,8 @@ Min-SNR diagnostics plots.
 Usage (E3 example):
 
 python tools/minsnr/plot_minsnr_diagnostics.py \
-  docs/assets/e3/e3_data/loss.jsonl \
-  --out-prefix docs/assets/e3/e3_plots/e3
+  docs/assets/e4/e4_data/loss.jsonl \
+  --out-prefix docs/assets/e4/e4_plots/e4
 
 Outputs:
   e3_early_loss_fid.png
