@@ -82,4 +82,10 @@ def test_cli_smoke_e5_hutch_trace(tmp_path):
         str(path),
     )
 
-    
+
+def test_cli_smoke_e6_minsnr_hutch_trace(tmp_path):   
+        path = tmp_path / "e6" 
+        _run_cli_and_check(
+        "configs/study/MS1_min_snr/e6/e6_smoke_minsnr_linear_hutch_trace_10k_50_nfe.yaml",
+        str(path),
+    )
