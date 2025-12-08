@@ -50,7 +50,6 @@ curvature:
   enabled: true
   method: "hutchinson"
   probes: 16            # number of Rademacher vectors per measurement
-  every: 100            # measure every 100 global steps
   log_prefix: "curvature/hutch"  # e.g. logs: curvature/hutch_trace_mean, curvature/hutch_trace_std
 
 eval:
