@@ -13,6 +13,7 @@ def _run_cli_and_check(config_path: str, out_dir: str):
     runs_root = project_root / out_dir
 
     # Clean up old runs if they exist
+    # this has issues on windows. beware
     if runs_root.exists():
         for p in sorted(runs_root.rglob("*"), reverse=True):
             try:
@@ -45,18 +46,33 @@ def _run_cli_and_check(config_path: str, out_dir: str):
     assert jsonl_files, (
         f"Expected at least one .jsonl log file under {runs_root}, "
         "but found none"
-    )
+    ) 
 
 
 def test_cli_smoke_e1_baseline(tmp_path):
     _run_cli_and_check(
         "configs/study/MS1_min_snr/e1/e1_smoke_linear.yaml",
-        tmp_path,   # switch outdir to tangible for debugging
+        tmp_path / "e1",   # switch outdir to tangible (e.g,: "runs") for debugging
     )
 
 
 def test_cli_smoke_e2_minsnr(tmp_path):
+    path = tmp_path / "e2"
+
     _run_cli_and_check(
         "configs/study/MS1_min_snr/e2/e2_smoke_linear.yaml",
-        tmp_path,
+        str(path),
     )
+
+
+def test_cli_smoke_e4_minsnr_normed(tmp_path):
+    path = tmp_path / "e4"
+
+    _run_cli_and_check(
+        "configs/study/MS1_min_snr/e4/e4_weight_norm_smoke.yaml",
+        str(path),
+    )
+
+    
+
+    
