@@ -55,7 +55,7 @@ eval:
 logging:
   enable: true
   backends: []
-  log_every_n_steps: 1
+  log_every_n_steps: 5
 
   wandb:
     mode: disabled

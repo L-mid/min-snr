@@ -5,7 +5,7 @@ seed: 1077
 metric: val/fid
 
 _experiment:
-  name: "e4-minsnr-linear-weightnorm-10k-50nfe"
+  name: "e6-minsnr-linear-hutch-trace-10k-50nfe"
 
 device: null
 deterministic: true
@@ -20,7 +20,7 @@ data:
 
 model:
   name: "unet_cifar32"
-  # same model as E1/E2
+  # same model as E1/E2/E5
 
 ema:
   enabled: true
@@ -37,20 +37,28 @@ optim:
   lr: 1.0e-4
 
 train:
-  total_steps: 5      
+  total_steps: 4
   grad_clip: 1.0
   amp: false
 
 loss:
-  weighting: "minsnr_norm"    # or "min-snr", "constant"
-  minsnr_gamma: 5.0       # same γ=5 as E2
+  # Min-SNR-reweighted ε-MSE DDPM loss
+  weighting: "minsnr"
+  minsnr_gamma: 5.0
+
+curvature:
+  # Hutchinson trace probe config (same as W1-E5)
+  enabled: true
+  method: "hutchinson"
+  probes: 2                     # number of Rademacher vectors per measurement
+  log_prefix: "curvature/hutch"  # logs: curvature/hutch_trace_mean, curvature/hutch_trace_std
 
 eval:
   quick: false
 
   grid:
     enabled: false
-    every: 5000          # keep same grid cadence as E2 for now
+    every: 5000
     sampler: ddim
     nfe: 20
     n_samples: 36
@@ -66,7 +74,7 @@ eval:
 
   fid_milestone:
     enabled: false
-    every: 2000          # <-- was 10000 in E2; now 2k,4k,6k,8k,10k
+    every: 2000          # 2k,4k,6k,8k,10k
     run_if_kid_improved_pct: 0.0
     sampler: ddpm
     nfe: 50
@@ -74,7 +82,7 @@ eval:
     fid_stats: "stats/cifar10_inception_train.npz"
 
   final:
-    enabled: false        
+    enabled: false
     at_end: true
     sampler: ddpm
     nfe: 50
@@ -82,16 +90,18 @@ eval:
     fid_stats: "stats/cifar10_inception_train.npz"
 
 logging:
-  enable: false
-  backends: ["tensorboard","wandb"]
-  log_every_n_steps: 100
+  enable: true
+  backends: []
+  log_every_n_steps: 5
 
   wandb:
     mode: disabled
     project: min_snr
-    run_name: "e4-minsnr-linear-weightnorm-50k-50nfe"
-    tags: ["e4", "min-snr", "linear", "weightnorm", "50k", "50nfe", "min_snr"]
-    notes: "e4: Min-SNR loss with timestep weights normalized to mean 1."
+    run_name: "e6-minsnr-linear-hutch-trace-10k-50nfe"
+    tags:
+      ["W1", "E6", "min_snr", "minsnr", "hutchinson-trace",
+       "linear", "10k", "50nfe", "curvature-probe"]
+    notes: "W1-E6: Min-SNR ε-MSE variant with Hutchinson trace curvature probe over 10k steps (compare to W1-E5 baseline)."
 
   tensorboard:
     flush_secs: 10
