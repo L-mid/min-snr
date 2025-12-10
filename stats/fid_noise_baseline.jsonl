@@ -1,0 +1,1 @@
+{"seed": 0, "n_images": 10000, "batch_size": 250, "height": 32, "width": 32, "device": "cuda", "noise_mode": "uniform", "fid": 226.2480699720315}
