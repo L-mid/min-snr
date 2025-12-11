@@ -67,7 +67,7 @@ eval:
     repeats: 3
     sampler: ddim
     nfe: 20
-
+   
   fid_milestone:
     enabled: true
     every: 2000
