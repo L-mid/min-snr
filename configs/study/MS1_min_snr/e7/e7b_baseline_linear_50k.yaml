@@ -5,7 +5,7 @@ seed: 1077
 metric: val/fid
 
 _experiment:
-  name: "e5-baseline-linear-hutch-trace-10k-50nfe"
+  name: "e7b-baseline-linear-hutch-50k-50nfe"
 
 device: null
 deterministic: true
@@ -20,8 +20,7 @@ data:
 
 model:
   name: "unet_cifar32"
-  # same model as E1/E2
-  # add base channel/ other unet config
+  # Same architecture as E7a (base_channels=32, etc.)
 
 ema:
   enabled: true
@@ -30,28 +29,24 @@ ema:
 diffusion:
   enabled: true
   beta_schedule: "linear"
-  # num_timesteps: 1000
-  # ... keep defaults as in E1/E2
 
 optim:
   optimizer: adam
   lr: 1.0e-4
 
 train:
-  total_steps: 10000
+  total_steps: 50000     # <--- longer run
   grad_clip: 1.0
   amp: true
 
 loss:
-  # Vanilla ε-MSE DDPM loss (no Min-SNR reweighting)
-  weighting: "constant"  
+  weighting: "constant"  # vanilla ε-MSE
 
 curvature:
-  # New: Hutchinson trace probe config for E5
   enabled: true
   method: "hutchinson"
-  probes: 16            # number of Rademacher vectors per measurement
-  log_prefix: "curvature/hutch"  # e.g. logs: curvature/hutch_trace_mean, curvature/hutch_trace_std
+  probes: 16
+  log_prefix: "curvature/hutch"
 
 eval:
   quick: false
@@ -74,7 +69,7 @@ eval:
 
   fid_milestone:
     enabled: true
-    every: 2000          # 2k,4k,6k,8k,10k
+    every: 2000
     run_if_kid_improved_pct: 0.0
     sampler: ddpm
     nfe: 50
@@ -91,17 +86,17 @@ eval:
 
 logging:
   enable: true
-  backends: ["tensorboard","wandb"]
+  backends: ["tensorboard", "wandb"]
   log_every_n_steps: 100
 
   wandb:
     mode: online
     project: min_snr
-    run_name: "e5-baseline-linear-hutch-trace-10k-50nfe"
+    run_name: "e7b-baseline-linear-hutch-50k-50nfe"
     tags:
-      ["W1", "E5", "baseline", "vanilla", "hutchinson-trace",
-       "linear", "10k", "50nfe", "min_snr"]
-    notes: "W1-E5: vanilla ε-MSE baseline with Hutchinson trace curvature probe over 10k steps."
+      ["W1", "E7b", "baseline", "vanilla", "hutchinson-trace",
+       "linear", "50k", "50nfe", "min_snr"]
+    notes: "W1-E7b: vanilla ε-MSE baseline with Hutchinson trace, longer 50k-step run."
 
   tensorboard:
     flush_secs: 10
