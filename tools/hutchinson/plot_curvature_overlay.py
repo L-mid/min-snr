@@ -19,10 +19,11 @@ Example usage:
     
 Current:
     python tools/hutchinson/plot_curvature_overlay.py \
-    docs/assets/e5/e5_data/loss.jsonl \
-    docs/assets/e6/e6_data/loss.jsonl \
-    --names e5-baseline-hutch-10k e6-minsnr-hutch-10k \
-    --out docs/assets/e6/e6_plots/curvature_hutch_vs_step_e5e6.png \
+    docs/assets/e7/e7a_data/loss.jsonl \
+    docs/assets/e7/e7b_data/loss.jsonl \
+    docs/assets/e7/e7c_data/loss.jsonl \
+    --names e7a e7b e7c \
+    --out docs/assets/e7/e7_plots/curvature_hutch_vs_step_e7abc.png \
     --smooth_window 21
 
 
