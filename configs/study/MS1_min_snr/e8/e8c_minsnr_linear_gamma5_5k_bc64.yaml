@@ -5,7 +5,7 @@ seed: 1077
 metric: val/fid
 
 _experiment:
-  name: "e5-baseline-linear-hutch-trace-10k-50nfe"
+  name: "e8c-minsnr-linear-gamma5-5k-bc32"
 
 device: null
 deterministic: true
@@ -20,8 +20,7 @@ data:
 
 model:
   name: "unet_cifar32"
-  # same model as E1/E2
-  # add base channel/ other unet config
+  base_channels: 64
 
 ema:
   enabled: true
@@ -30,28 +29,25 @@ ema:
 diffusion:
   enabled: true
   beta_schedule: "linear"
-  # num_timesteps: 1000
-  # ... keep defaults as in E1/E2
 
 optim:
   optimizer: adam
   lr: 1.0e-4
 
 train:
-  total_steps: 10000
+  total_steps: 5000
   grad_clip: 1.0
   amp: true
 
 loss:
-  # Vanilla ε-MSE DDPM loss (no Min-SNR reweighting)
-  weighting: "constant"  
+  weighting: "minsnr"
+  minsnr_gamma: 5.0       # <-- γ sweep: 5
 
 curvature:
-  # New: Hutchinson trace probe config for E5
   enabled: true
   method: "hutchinson"
-  probes: 16            # number of Rademacher vectors per measurement
-  log_prefix: "curvature/hutch"  # e.g. logs: curvature/hutch_trace_mean, curvature/hutch_trace_std
+  probes: 16
+  log_prefix: "curvature/hutch"
 
 eval:
   quick: false
@@ -74,9 +70,9 @@ eval:
 
   fid_milestone:
     enabled: true
-    every: 2000          # 2k,4k,6k,8k,10k
+    every: 2000
     run_if_kid_improved_pct: 0.0
-    sampler: ddpm
+    sampler: ddim
     nfe: 50
     n_samples: 5000
     fid_stats: "stats/cifar10_inception_train.npz"
@@ -84,24 +80,24 @@ eval:
   final:
     enabled: true
     at_end: true
-    sampler: ddpm
+    sampler: ddim
     nfe: 50
     n_samples: 10000
     fid_stats: "stats/cifar10_inception_train.npz"
 
 logging:
   enable: true
-  backends: ["tensorboard","wandb"]
-  log_every_n_steps: 100
+  backends: ["tensorboard", "wandb"]
+  log_every_n_steps: 1000
 
   wandb:
     mode: online
     project: min_snr
-    run_name: "e5-baseline-linear-hutch-trace-10k-50nfe"
+    run_name: "e8c-minsnr-linear-gamma5-5k-bc32"
     tags:
-      ["W1", "E5", "baseline", "vanilla", "hutchinson-trace",
-       "linear", "10k", "50nfe", "min_snr"]
-    notes: "W1-E5: vanilla ε-MSE baseline with Hutchinson trace curvature probe over 10k steps."
+      ["e8", "e8c", "minsnr", "linear", "gamma5",
+       "5k", "bc64", "hutchinson-trace"]
+    notes: "e8c: Min-SNR ε-MSE with Hutchinson trace, γ=5, base_channels=32, 5k steps."
 
   tensorboard:
     flush_secs: 10
