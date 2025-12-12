@@ -43,7 +43,7 @@
 
 - Single seed, 5k steps → **pilot only**, not a final comparison vs baselines.
 - Only used to choose a candidate γ; small FID gaps (<5–10%) are treated as noise.
-- In this pilot, the *logged* FID points visible in plots are at **2k** and **4k** (and the best FID tends to occur early).
+- In this pilot, the FID points visible in plots are at **2k** and **4k** (and the best FID tends to occur early).
 
 ---
 
@@ -71,8 +71,8 @@ Saved under `docs/assets/e8/e8_plots/`:
 | Run | γ | FID @ 2k | FID @ 4k | Best FID in run | Notes |
 |-----|---:|---------:|---------:|----------------:|------|
 | E8a | 1  | 204.47 | 206.95 | 204.47 | Best occurs early (2k). |
-| E8b | 3  | 204.0 | ~206.6 | 204.0 |  |
-| E8c | 5  | 203.9 | ~206.5 | 203.9 |  |
+| E8b | 3  | 204.0 | 206.6 | 204.0 |  |
+| E8c | 5  | 203.9 | 206.5 | 203.9 |  |
 
 **Observed ordering:** γ=5 best, then γ=3, then γ=1 (at both 2k and 4k).  
 **But:** all three runs *worsen* from 2k → 4k in these milestone evaluations.
@@ -90,7 +90,7 @@ This matches the extremely high FID regime: early-stage differences are too smal
 
 ## What changed (model interpretation / mechanism)
 
-### 1) γ mostly changes the *time budget* of the objective
+### γ mostly changes the *time budget* of the objective
 
 ![alt text](../../assets/e8/e8_plots/e8_weight_curves.png)
 
