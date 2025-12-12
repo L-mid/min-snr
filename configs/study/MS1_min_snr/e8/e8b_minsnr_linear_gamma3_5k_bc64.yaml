@@ -67,12 +67,12 @@ eval:
     repeats: 3
     sampler: ddim
     nfe: 20
-
+   
   fid_milestone:
     enabled: true
     every: 2000
     run_if_kid_improved_pct: 0.0
-    sampler: ddim
+    sampler: ddpm
     nfe: 50
     n_samples: 5000
     fid_stats: "stats/cifar10_inception_train.npz"
@@ -80,7 +80,7 @@ eval:
   final:
     enabled: true
     at_end: true
-    sampler: ddim
+    sampler: ddpm
     nfe: 50
     n_samples: 10000
     fid_stats: "stats/cifar10_inception_train.npz"
@@ -88,7 +88,7 @@ eval:
 logging:
   enable: true
   backends: ["tensorboard", "wandb"]
-  log_every_n_steps: 1000
+  log_every_n_steps: 100
 
   wandb:
     mode: online

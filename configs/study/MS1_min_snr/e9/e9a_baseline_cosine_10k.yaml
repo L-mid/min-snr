@@ -5,7 +5,7 @@ seed: 1077
 metric: val/fid
 
 _experiment:
-  name: "e8c-minsnr-linear-gamma5-5k-bc32"
+  name: "e9a-vanilla-cosine-10k-bc64"
 
 device: null
 deterministic: true
@@ -28,20 +28,19 @@ ema:
 
 diffusion:
   enabled: true
-  beta_schedule: "linear"
+  beta_schedule: "cosine"
 
 optim:
   optimizer: adam
   lr: 1.0e-4
 
 train:
-  total_steps: 5000
+  total_steps: 10000
   grad_clip: 1.0
   amp: true
 
 loss:
-  weighting: "minsnr"
-  minsnr_gamma: 5.0       # <-- γ sweep: 5
+  weighting: "constant"  # vanilla ε-MSE baseline
 
 curvature:
   enabled: true
@@ -54,7 +53,7 @@ eval:
 
   grid:
     enabled: true
-    every: 5000
+    every: 10000
     sampler: ddim
     nfe: 20
     n_samples: 36
@@ -88,16 +87,16 @@ eval:
 logging:
   enable: true
   backends: ["tensorboard", "wandb"]
-  log_every_n_steps: 100
+  log_every_n_steps: 500
 
   wandb:
     mode: online
     project: min_snr
-    run_name: "e8c-minsnr-linear-gamma5-5k-bc32"
+    run_name: "e9a-vanilla-cosine-10k-bc64"
     tags:
-      ["e8", "e8c", "minsnr", "linear", "gamma5",
-       "5k", "bc64", "hutchinson-trace"]
-    notes: "e8c: Min-SNR ε-MSE with Hutchinson trace, γ=5, base_channels=32, 5k steps."
+      ["e9", "e9a", "scheduler", "cosine", "vanilla",
+       "10k", "bc64", "hutchinson-trace"]
+    notes: "e9a: vanilla ε-MSE under cosine β schedule, 10k steps, base_channels=64, with Hutchinson curvature probes for scheduler interaction sanity check."
 
   tensorboard:
     flush_secs: 10
