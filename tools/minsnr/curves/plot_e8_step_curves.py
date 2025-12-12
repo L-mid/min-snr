@@ -1,3 +1,29 @@
+"""
+Plots min-snr diagnostics vs step. 
+
+
+python tools/<script>.py \
+  LOSS_A RESULTS_A \
+  LOSS_B RESULTS_B \
+  LOSS_C RESULTS_C \
+  --names e8a e8b e8c \
+  --out docs/assets/e8/<something>.png
+
+  
+Current:
+
+python tools/minsnr/curves/plot_e8_step_curves.py \
+  docs/assets/e8/e8a_data/loss.jsonl docs/assets/e8/e8a_data/results.jsonl \
+  docs/assets/e8/e8b_data/loss.jsonl docs/assets/e8/e8b_data/results.jsonl \
+  docs/assets/e8/e8c_data/loss.jsonl docs/assets/e8/e8c_data/results.jsonl \
+  --names e8a e8b e8c \
+  --out docs/assets/e8/e8_plots/e8_step_curves.png
+
+"""
+
+
+
+
 import argparse
 import json
 from pathlib import Path
@@ -11,7 +37,13 @@ def load_jsonl(path):
             line = line.strip()
             if not line:
                 continue
-            records.append(json.loads(line))
+            r = json.loads(line)
+            # Handle {"_i": step, "out": {...}} style logs
+            if isinstance(r, dict) and isinstance(r.get("out"), dict):
+                out = r["out"]
+                out["_i"] = r.get("_i")  # optional: keep step around
+                r = out
+            records.append(r)
     return records
 
 
@@ -42,7 +74,7 @@ def collect_loss_series(loss_path, results_path):
     # FID vs step
     steps_fid = []
     fids = []
-    for r in res_recs:
+    for r in loss_recs:
         step = extract_step(r)
         if step is None:
             continue
