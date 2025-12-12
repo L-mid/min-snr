@@ -63,7 +63,7 @@ This is explicitly a paired comparison: keep everything identical except the los
   - Compare:
     - Best FID over 10k steps per run.
     - FID trajectory shape (does Min-SNR blow up, plateau, or look similar).
-    - wishing best of luck!
+    - wishing best of luck for FID!
 
 ---
 
@@ -102,5 +102,5 @@ This is explicitly a paired comparison: keep everything identical except the los
   - Qualitative samples show obvious collapse artefacts unique to Min-SNR.
   - Curvature / SNR stats show extreme behaviour for Min-SNR not present in vanilla.
 
-If a pathology is detected, e10+ may focus on isolating “cosine × Min-SNR” interaction (e.g. by adjusting γ, cap strategy, or SNR definition). If not, great!
+If a pathology is detected, e10+ may focus on isolating "cosine × Min-SNR" interaction (e.g. by adjusting γ, cap strategy, or SNR definition). If not, great!
 
