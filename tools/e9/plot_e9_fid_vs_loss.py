@@ -1,11 +1,19 @@
 """
-Usage example (with e8 data):
-
+Usage example (with e9 data):
 python tools/e9/plot_e9_fid_vs_loss.py \
   docs/assets/e9/e9a_data/loss.jsonl \
   --names e9a \
   --out docs/assets/e9/e9_plots/e9_fid_vs_loss_e8abc.png
 
+
+
+Current:
+python tools/e9/plot_e9_fid_vs_loss.py \
+  docs/assets/e9/e9a_data/loss.jsonl \
+  docs/assets/e9/e9b_data/loss.jsonl \
+  --names e9a-vanilla e9b-min-snr \
+  --out docs/assets/e9/e9_plots/e9_fid_vs_loss_e9ab.png
+ 
 
 """
 
