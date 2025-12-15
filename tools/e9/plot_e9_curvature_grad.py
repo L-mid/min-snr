@@ -7,13 +7,13 @@ python tools/e9/plot_e9_curvature_grad.py \
   docs/assets/e8/e8c_data/loss.jsonl \
   --names e8a e8b e8c \
   --out docs/assets/e9/e9_plots/e9_curvature_grad_e8abc.png
-
+ 
   
 current:
 python tools/e9/plot_e9_curvature_grad.py \
   docs/assets/e9/e9a_data/loss.jsonl \
   docs/assets/e9/e9b_data/loss.jsonl \
-  --names e9a e9b \
+  --names e9a-vanilla e9b-min-snr \
   --out docs/assets/e9/e9_plots/e9_curvature_grad_e9ab.png
 
 

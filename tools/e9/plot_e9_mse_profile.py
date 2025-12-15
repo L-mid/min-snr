@@ -1,13 +1,12 @@
 """
-Usage example (with e8 data):
+Usage example (with e9 data):
 
 python tools/e9/plot_e9_mse_profile.py \
-  docs/assets/e8/e8a_data/loss.jsonl \
-  docs/assets/e8/e8b_data/loss.jsonl \
-  docs/assets/e8/e8c_data/loss.jsonl \
-  --names e8a e8b e8c \
-  --out docs/assets/e9/e9_plots/e8_mse_profile_e8abc.png
-
+  docs/assets/e9/e9a_data/loss.jsonl \
+  docs/assets/e9/e9b_data/loss.jsonl \
+  --names e9a-vanilla e9b-min-snr  \
+  --out docs/assets/e9/e9_plots/e9_mse_profile_e9ab.png
+ 
 Flags:
   --frac 0.3   # use last 30%% of steps (default) when averaging MSE(t)
 

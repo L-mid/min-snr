@@ -22,9 +22,9 @@
   - E8c: `gamma=5.0`
 - **Optim:** Adam, `lr=1e-4`, `grad_clip=1.0`, `amp=true`.
 - **Train:** `total_steps=5000`, `seed=1077`, EMA `decay=0.999`.
-- **Eval (planned):**
+- **Eval:**
   - FID milestones: every 2000 steps, `ddpm`, `nfe=50`, `n_samples=5000`.
-  - Final FID @5k: `ddim`, `nfe=50`, `n_samples=10000`.
+  - Final FID @5k: `ddpm`, `nfe=50`, `n_samples=10000`.
   - Grid: @5k, `ddim`, `nfe=20`, `n_samples=36`, save images.
 - **Curvature:** Hutchinson enabled (diagnostic only).
 
@@ -41,7 +41,7 @@
 
 ## Scope / caveats
 
-- Single seed, 5k steps → **pilot only**, not a final comparison vs baselines.
+- Single seed, 5k steps → pilot only, not a final comparison vs baselines or anything like that.
 - Only used to choose a candidate γ; small FID gaps (<5–10%) are treated as noise.
 - In this pilot, the FID points visible in plots are at **2k** and **4k** (and the best FID tends to occur early).
 
@@ -51,18 +51,6 @@
 
 Saved under `docs/assets/e8/e8_plots/`:
 
-- `e8_step_curves.png`  
-  Train loss, FID milestones, grad norm, Hutch trace vs step (overlay: a/b/c).
-- `e8_weight_curves.png`  
-  Min-SNR weight curve `w_γ(t)` vs normalized timestep.
-- `effective_loss_vs_t.png`  
-  Unweighted per-t `MSE(t)` and effective contribution `w_γ(t) * MSE(t)`.
-- `e8_snr_geometry.png`  
-  Per-step grad norm + curvature vs per-step mean SNR (scatter).
-- `grid.png`  
-  Sample grid at 5k (DDIM, NFE=20).
-
----
 
 ## Results
 
