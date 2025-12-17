@@ -89,3 +89,11 @@ def test_cli_smoke_e6_minsnr_hutch_trace(tmp_path):
         "configs/study/MS1_min_snr/e6/e6_smoke_minsnr_linear_hutch_trace_10k_50_nfe.yaml",
         str(path),
     )
+        
+
+def test_cli_smoke_e11_kid(tmp_path):   
+        path = tmp_path / "e11" 
+        _run_cli_and_check(
+        "configs/study/MS1_min_snr/e11/e11b_smoke_kid_min_snr_ddim_nfe10_s5k_10k_bc64.yaml",
+        str(path),
+    )
