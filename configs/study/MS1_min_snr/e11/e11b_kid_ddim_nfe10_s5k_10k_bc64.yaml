@@ -5,7 +5,7 @@ seed: 1077
 metric: val/fid
 
 _experiment:
-  name: "e10b-minsnr-fixed-ddim-nfe20-10k-bc64"
+  name: "e11b-kid-sanity-minsnr-g5-ddim-nfe10-s5k-10k-bc64"
 
 device: null
 deterministic: true
@@ -45,69 +45,51 @@ loss:
 
 curvature:
   enabled: false
-  method: "hutchinson"
-  probes: 16
-  log_prefix: "curvature/hutch"
 
 eval:
   recon:
-    enabled: true
-    every: 2000
-    n_batches: 4
-    t_mode: "fixed"
-    t_values: [0, 10, 50, 200, 500, 900]
-    metrics: ["mse", "psnr"]
-    save_images: true
-    n_images: 16
-    max_val: 2.0
-    log_prefix: "val/recon"
+    enabled: false
 
   quick: false
 
   grid:
     enabled: true
-    every: 2000
+    every: 10000
     sampler: ddim
-    nfe: 20
+    nfe: 10
     n_samples: 36
     save_images: true
 
   kid:
-    enabled: false
-    every: 4000
-    n_samples: 1024
-    repeats: 3
+    enabled: true
+    every: 10000
+    n_samples: 5000
+    repeats: 20
     sampler: ddim
-    nfe: 20
+    nfe: 10
 
   fid_milestone:
-    enabled: true
-    every: 2000
-    run_if_kid_improved_pct: 0.0
-    sampler: ddim
-    nfe: 20
-    n_samples: 5000
-    fid_stats: "stats/cifar10_inception_train.npz"
+    enabled: false
 
   final:
     enabled: true
     at_end: true
     sampler: ddim
-    nfe: 20
-    n_samples: 10000
+    nfe: 10
+    n_samples: 5000
     fid_stats: "stats/cifar10_inception_train.npz"
 
 logging:
   enable: true
-  backends: ["tensorboard", "wandb"]
+  backends: ["wandb"]
   log_every_n_steps: 500
 
   wandb:
     mode: online
     project: min_snr
-    run_name: "e10b-minsnr-fixed-ddim-nfe20-10k-bc64"
-    tags: ["e10", "e10b", "sampler", "ddim", "nfe20", "minsnr", "gamma5", "10k", "bc64", "recon"]
-    notes: "e10b: Sampler sanity. Fixed Min-SNR config; evaluate DDIM @ NFE=20 + val reconstruction metrics/images."
+    run_name: "e11b-kid-sanity-minsnr-g5-ddim-nfe10-s5k-10k-bc64"
+    tags: ["e11","e11b","kid","sanity","minsnr","gamma5","ddim","nfe10","s5k","10k","bc64"]
+    notes: "E11 KID sanity: Min-SNR gamma=5. Compute KID(pool=5k,repeats=20) + FID(5k) at end, DDIM NFE=10."
 
   tensorboard:
     flush_secs: 10

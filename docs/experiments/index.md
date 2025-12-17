@@ -35,7 +35,7 @@ e9 – Scheduler interaction (linear vs cosine, very short).
 e10 – Sampler sanity (DDPM vs DDIM, fixed config).
     Small NFE (10 or 20) to confirm Min-SNR doesn’t break sampling.
 
-e11 – FID/KID quick check (baseline).
+e11 – KID quick check (baseline).
     5k samples, low NFE, baseline vs Min-SNR; treat as reconnaissance.
 
 e12 – “Settings playground” experiment.

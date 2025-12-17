@@ -10,10 +10,10 @@ python tools/plot_loss_fid.py \
 
 current (with names):
 python tools/plot_loss_fid.py \
-  docs/assets/e7/e7a_data/loss.jsonl docs/assets/e7/e7a_data/results.jsonl \
-  docs/assets/e7/e7c_data/loss.jsonl docs/assets/e7/e7c_data/results.jsonl \
-  --names e7a-baseline e7c-bc64 \
-  --out docs/assets/e7/e7_plots/fid_vs_steps_e7ac.png
+  docs/assets/e10/e10a_data/loss.jsonl docs/assets/e10/e10a_data/results.jsonl \
+  docs/assets/e10/e10b_data/loss.jsonl docs/assets/e10/e10b_data/results.jsonl \
+  --names e10a e10b \
+  --out docs/assets/e10/e10_plots/fid_vs_steps_e10ab.png
 """
 
 
