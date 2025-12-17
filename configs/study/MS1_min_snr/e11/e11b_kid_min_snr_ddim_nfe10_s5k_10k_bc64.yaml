@@ -65,8 +65,13 @@ eval:
     every: 10000
     n_samples: 5000
     repeats: 20
+    subset_size: 100
     sampler: ddim
     nfe: 10
+    batch_size: 64
+    real_split: "train"
+    real_seed: 123
+    feature_cache: null
 
   fid_milestone:
     enabled: false

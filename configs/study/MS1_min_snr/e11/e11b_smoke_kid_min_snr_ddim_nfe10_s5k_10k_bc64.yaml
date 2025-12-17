@@ -5,7 +5,7 @@ seed: 1077
 metric: val/fid
 
 _experiment:
-  name: "e11a-kid-sanity-baseline-ddim-nfe10-s5k-10k-bc64"
+  name: "e11b-kid-sanity-minsnr-g5-ddim-nfe10-s5k-10k-bc64"
 
 device: null
 deterministic: true
@@ -20,7 +20,7 @@ data:
 
 model:
   name: "unet_cifar32"
-  base_channels: 64
+  base_channels: 32
 
 ema:
   enabled: true
@@ -35,7 +35,7 @@ optim:
   lr: 1.0e-4
 
 train:
-  total_steps: 10000
+  total_steps: 2
   grad_clip: 1.0
   amp: true
 
@@ -45,22 +45,10 @@ loss:
 
 curvature:
   enabled: false
-  method: "hutchinson"
-  probes: 16
-  log_prefix: "curvature/hutch"
 
 eval:
   recon:
     enabled: false
-    every: 2000
-    n_batches: 4
-    t_mode: "fixed"
-    t_values: [0, 10, 50, 200, 500, 900]
-    metrics: ["mse", "psnr"]
-    save_images: true
-    n_images: 16
-    max_val: 2.0
-    log_prefix: "val/recon"
 
   quick: false
 
@@ -74,45 +62,39 @@ eval:
 
   kid:
     enabled: true
-    every: 10000
-    n_samples: 5000
-    repeats: 20
+    every: 1
+    n_samples: 2
+    repeats: 2
     subset_size: 100
     sampler: ddim
     nfe: 10
-    batch_size: 64
+    batch_size: 2
     real_split: "train"
     real_seed: 123
     feature_cache: null
 
   fid_milestone:
     enabled: false
-    every: 2000
-    run_if_kid_improved_pct: 0.0
-    sampler: ddpm
-    nfe: 20
-    n_samples: 5000
-    fid_stats: "stats/cifar10_inception_train.npz"
 
   final:
     enabled: true
     at_end: true
     sampler: ddim
     nfe: 10
-    n_samples: 5000
+    n_samples: 2
     fid_stats: "stats/cifar10_inception_train.npz"
 
 logging:
   enable: true
-  backends: ["wandb"]
-  log_every_n_steps: 500
+  backends: []
+  log_every_n_steps: 1
 
   wandb:
-    mode: online
+    mode: disabled
     project: min_snr
-    run_name: "e11a-kid-sanity-baseline-ddim-nfe10-s5k-10k-bc64"
-    tags: ["e11","e11a","kid","sanity","baseline","constant","ddim","nfe10","s5k","10k","bc64"]
-    notes: "E11 KID sanity: baseline (constant weighting). Compute KID(pool=5k,repeats=20) + FID(5k) at end, DDIM NFE=10."
+    run_name: "e11b-kid-sanity-minsnr-g5-ddim-nfe10-s5k-10k-bc64"
+    tags: ["e11","e11b","kid","sanity","minsnr","gamma5","ddim","nfe10","s5k","10k","bc64"]
+    notes: "E11 KID sanity: Min-SNR gamma=5. Compute KID(pool=5k,repeats=20) + FID(5k) at end, DDIM NFE=10."
 
   tensorboard:
     flush_secs: 10
