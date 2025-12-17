@@ -51,14 +51,14 @@ curvature:
 
 eval:
   recon:
-    enabled: false
-    every: 1
+    enabled: true
+    every: 2000
     n_batches: 4
     t_mode: "fixed"
     t_values: [0, 10, 50, 200, 500, 900]
     metrics: ["mse", "psnr"]
     save_images: true
-    n_images: 4
+    n_images: 16
     max_val: 2.0
     log_prefix: "val/recon"
 
