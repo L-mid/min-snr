@@ -40,8 +40,7 @@ train:
   amp: true
 
 loss:
-  weighting: "minsnr"
-  minsnr_gamma: 5.0
+  weighting: "constant"
 
 curvature:
   enabled: false
