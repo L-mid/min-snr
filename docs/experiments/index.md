@@ -41,7 +41,7 @@ e11 – KID quick check (baseline).
 e12 – Settings playground experiment.
     One composite experiment where decide γ + schedule combo to promote into W3 full scan based on week-1/2 findings.
 
-
+ 
 ### wk3 
 
 e13 – Baseline (linear, NFE=50, 3 seeds).
@@ -50,23 +50,23 @@ e14 – Min-SNR (linear, NFE=50, 3 seeds).
 
 e15 – Baseline (linear, NFE=25, 3 seeds).
 
-e14 – Min-SNR (linear, NFE=25, 3 seeds).
+e16 – Min-SNR (linear, NFE=25, 3 seeds).
 
-e15 – Baseline (cosine, best γ from W2, both NFEs, 3 seeds).
+e17 – Baseline (cosine, best γ from W2, both NFEs, 3 seeds).
 
-e16 – Min-SNR (cosine, best γ, both NFEs, 3 seeds).
+e18 – Min-SNR (cosine, best γ, both NFEs, 3 seeds).
 
 
 ### wk 4
 
-e17 – Hold-out baseline (best vanilla config, 3 new seeds).
+e19 – Hold-out baseline (best vanilla config, 3 new seeds).
 
-e18 – Hold-out Min-SNR (best γ, 3 new seeds).
+e20 – Hold-out Min-SNR (best γ, 3 new seeds).
 
-e19 – Hyperparam sensitivity probe: e.g., slight LR change for Min-SNR.
+e21 – Hyperparam sensitivity probe: e.g., slight LR change for Min-SNR.
 
-e19 – NFE robustness check: run best Min-SNR config at a new NFE (e.g., 35 steps).
+e22 – NFE robustness check: run best Min-SNR config at a new NFE (e.g., 35 steps).
 
-e20 – KID & other metric confirmation for best config.
+e23 – KID & other metric confirmation for best config.
 
-e21 – Tiny robustness or failure-mode experiment (e.g., starting from different init, or removing EMA) to see where Min-SNR breaks
+e24 – Tiny robustness or failure-mode experiment (e.g., starting from different init, or removing EMA) to see where Min-SNR breaks
