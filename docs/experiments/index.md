@@ -38,8 +38,8 @@ e10 – Sampler sanity (DDPM vs DDIM, fixed config).
 e11 – KID quick check (baseline).
     5k samples, low NFE, baseline vs Min-SNR; treat as reconnaissance.
 
-e12 – “Settings playground” experiment.
-    One composite experiment where you decide γ + schedule combo to promote into W3 full scan based on week-1/2 findings.
+e12 – Settings playground experiment.
+    One composite experiment where decide γ + schedule combo to promote into W3 full scan based on week-1/2 findings.
 
 
 ### wk3 
