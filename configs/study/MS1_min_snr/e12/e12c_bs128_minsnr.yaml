@@ -1,11 +1,12 @@
 schema: study/v1
 study_name: min_snr
-out_dir: "runs/"
+out_dir: "runs/e12/e12c"
 seed: 1077
 metric: val/fid
 
 _experiment:
-  name: "e11a-kid-sanity-baseline-ddim-nfe10-s5k-10k-bc64"
+  name: "e12c-playground-cosine-g5-bs128-steps313-bc64"
+  notes: "E12 batch/steps sweep. Keep ~40k images total: bs=128 * 313 steps (~40,064)."
 
 device: null
 deterministic: true
@@ -14,7 +15,7 @@ clean_run: false
 data:
   dataset: "cifar10"
   subset: null
-  batch_size: 4
+  batch_size: 128
   num_workers: 2
   shuffle: true
 
@@ -35,12 +36,13 @@ optim:
   lr: 1.0e-4
 
 train:
-  total_steps: 10000
+  total_steps: 313
   grad_clip: 1.0
   amp: true
 
 loss:
-  weighting: "constant"
+  weighting: "minsnr"
+  minsnr_gamma: 5.0
 
 curvature:
   enabled: false
@@ -49,35 +51,35 @@ curvature:
   log_prefix: "curvature/hutch"
 
 eval:
+  quick: false
+
   recon:
-    enabled: false
-    every: 2000
+    enabled: true
+    every: 78
     n_batches: 4
     t_mode: "fixed"
-    t_values: [0, 10, 50, 200, 500, 900]
+    t_values: [0, 10, 500, 900]
     metrics: ["mse", "psnr"]
     save_images: true
-    n_images: 16
+    n_images: 4
     max_val: 2.0
     log_prefix: "val/recon"
 
-  quick: false
-
   grid:
     enabled: true
-    every: 10000
-    sampler: ddim
+    every: 78
+    sampler: "ddim"
     nfe: 10
-    n_samples: 36
+    n_samples: 18
     save_images: true
 
   kid:
     enabled: true
-    every: 10000
-    n_samples: 5000
-    repeats: 20
+    every: 78
+    n_samples: 2000
+    repeats: 10
     subset_size: 100
-    sampler: ddim
+    sampler: "ddim"
     nfe: 10
     batch_size: 64
     real_split: "train"
@@ -85,18 +87,18 @@ eval:
     feature_cache: null
 
   fid_milestone:
-    enabled: false
-    every: 2000
+    enabled: true
+    every: 78
     run_if_kid_improved_pct: 0.0
-    sampler: ddpm
+    sampler: "ddpm"
     nfe: 20
     n_samples: 5000
     fid_stats: "stats/cifar10_inception_train.npz"
 
   final:
-    enabled: true
+    enabled: false
     at_end: true
-    sampler: ddim
+    sampler: "ddim"
     nfe: 10
     n_samples: 5000
     fid_stats: "stats/cifar10_inception_train.npz"
@@ -104,14 +106,29 @@ eval:
 logging:
   enable: true
   backends: ["wandb"]
-  log_every_n_steps: 500
+  log_every_n_steps: 100
 
   wandb:
     mode: online
     project: min_snr
-    run_name: "e11a-kid-sanity-baseline-ddim-nfe10-s5k-10k-bc64"
-    tags: ["e11","e11a","kid","sanity","baseline","constant","ddim","nfe10","s5k","10k","bc64"]
-    notes: "E11 KID sanity: baseline (constant weighting). Compute KID(pool=5k,repeats=20) + FID(5k) at end, DDIM NFE=10."
+    run_name: "e12c-cosine-g5-bs128-steps313-bc64"
+    tags:
+      - e12
+      - e12c
+      - playground
+      - minsnr
+      - gamma5
+      - cosine
+      - bs128
+      - steps313
+      - imgs40k
+      - wallclock
+      - recon
+      - grid
+      - kid
+      - fid
+      - bc64
+    notes: "E12 sweep. Same ~40k images, very few steps; see if quality collapses vs time wins."
 
   tensorboard:
     flush_secs: 10
