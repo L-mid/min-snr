@@ -38,8 +38,8 @@ At fixed total training images (≈40k), how does increasing **batch size** and 
 
 **Sweep (constant images ≈ 40k)**
 - **E12a:** batch_size=4,  total_steps=10_000  → 40,000 images
-- **E12b:** batch_size=64, total_steps=625     → 40,000 images
-- **E12c:** batch_size=128,total_steps=313     → 40,064 images (rounded)
+- **E12b:** batch_size=64, total_steps=600     → ~40,000 images (rounded)
+- **E12c:** batch_size=128,total_steps=320     → ~40,064 images (rounded)
 
 ---
 
@@ -70,8 +70,8 @@ At fixed total training images (≈40k), how does increasing **batch size** and 
 
 Aim for ~4 checkpoints per run:
 - E12a: every 2500 steps
-- E12b: every 156 steps
-- E12c: every 78 steps
+- E12b: every 150 steps
+- E12c: every 80 steps
 
 (Each checkpoint runs: grid + recon + KID + FID milestone)
 
@@ -90,8 +90,7 @@ If bs128 is unstable / clearly worse, ignore and choose between bs4 vs bs64.
 
 ---
 
-## Commands (example)
-
+## Commands 
 ```bash
 python -m ablation_harness.cli run --config configs/study/MS1_min_snr/e12/e12a_playground_cosine_g5_bs4_steps10k_bc64.yaml
 python -m ablation_harness.cli run --config configs/study/MS1_min_snr/e12/e12b_playground_cosine_g5_bs64_steps625_bc64.yaml
