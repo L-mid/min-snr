@@ -36,7 +36,7 @@ optim:
   lr: 1.0e-4
 
 train:
-  total_steps: 313
+  total_steps: 320
   grad_clip: 1.0
   amp: true
 
@@ -55,7 +55,7 @@ eval:
 
   recon:
     enabled: true
-    every: 78
+    every: 80
     n_batches: 4
     t_mode: "fixed"
     t_values: [0, 10, 500, 900]
@@ -67,7 +67,7 @@ eval:
 
   grid:
     enabled: true
-    every: 78
+    every: 80
     sampler: "ddim"
     nfe: 10
     n_samples: 18
@@ -75,7 +75,7 @@ eval:
 
   kid:
     enabled: true
-    every: 78
+    every: 80
     n_samples: 2000
     repeats: 10
     subset_size: 100
@@ -88,7 +88,7 @@ eval:
 
   fid_milestone:
     enabled: true
-    every: 78
+    every: 80
     run_if_kid_improved_pct: 0.0
     sampler: "ddpm"
     nfe: 20
@@ -106,7 +106,7 @@ eval:
 logging:
   enable: true
   backends: ["wandb"]
-  log_every_n_steps: 100
+  log_every_n_steps: 10
 
   wandb:
     mode: online
