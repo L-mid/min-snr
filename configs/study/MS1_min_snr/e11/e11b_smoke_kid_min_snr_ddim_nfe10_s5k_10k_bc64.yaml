@@ -44,20 +44,33 @@ loss:
   minsnr_gamma: 5.0
 
 curvature:
-  enabled: false
+  enabled: true
+  method: "hutchinson"
+  probes: 2
+  log_prefix: "curvature/hutch"
 
 eval:
   recon:
-    enabled: false
+    enabled: true
+    every: 1
+    n_batches: 2
+    t_mode: "fixed"
+    t_values: [500, 900]
+    metrics: ["mse", "psnr"]
+    save_images: true
+    n_images: 2
+    max_val: 2.0
+    log_prefix: "val/recon"
+
 
   quick: false
 
   grid:
     enabled: true
-    every: 10000
+    every: 1
     sampler: ddim
-    nfe: 10
-    n_samples: 36
+    nfe: 2
+    n_samples: 2
     save_images: true
 
   kid:
@@ -65,36 +78,42 @@ eval:
     every: 1
     n_samples: 2
     repeats: 2
-    subset_size: 100
+    subset_size: 2
     sampler: ddim
-    nfe: 10
+    nfe: 2
     batch_size: 2
     real_split: "train"
     real_seed: 123
     feature_cache: null
 
   fid_milestone:
-    enabled: false
+    enabled: true
+    every: 2          # 2k,4k,6k,8k,10k
+    run_if_kid_improved_pct: 0.0
+    sampler: ddpm
+    nfe: 2
+    n_samples: 2
+    fid_stats: "stats/cifar10_inception_train.npz"
 
   final:
     enabled: true
     at_end: true
     sampler: ddim
-    nfe: 10
+    nfe: 2
     n_samples: 2
     fid_stats: "stats/cifar10_inception_train.npz"
 
 logging:
   enable: true
-  backends: []
+  backends: [wandb]
   log_every_n_steps: 1
 
   wandb:
-    mode: disabled
+    mode: online
     project: min_snr
-    run_name: "e11b-kid-sanity-minsnr-g5-ddim-nfe10-s5k-10k-bc64"
-    tags: ["e11","e11b","kid","sanity","minsnr","gamma5","ddim","nfe10","s5k","10k","bc64"]
-    notes: "E11 KID sanity: Min-SNR gamma=5. Compute KID(pool=5k,repeats=20) + FID(5k) at end, DDIM NFE=10."
+    run_name: "e11-logging-test"
+    tags: ["test"]
+    notes: "e11 has been chosen to test wandb logging."
 
   tensorboard:
     flush_secs: 10
