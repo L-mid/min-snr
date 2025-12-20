@@ -1,12 +1,11 @@
-# tags
 schema: study/v1
 study_name: min_snr
 out_dir: "runs/"
-seed: {1077, 11, 1}
+seed: [1077, 11, 1]
 metric: val/fid
 
 _experiment:
-  name: "e11a-kid-sanity-baseline-ddim-nfe10-s5k-10k-bc64"
+  name: "e16-minsnr-linear-g5-nfe25-s5k-10k-bc64"
 
 device: null
 deterministic: true
@@ -29,14 +28,14 @@ ema:
 
 diffusion:
   enabled: true
-  beta_schedule: "linear"
+  beta_schedule: "linear" 
 
 optim:
   optimizer: adam
   lr: 1.0e-4
 
 train:
-  total_steps: 10000 
+  total_steps: 10000
   grad_clip: 1.0
   amp: true
 
@@ -52,14 +51,14 @@ curvature:
 
 eval:
   recon:
-    enabled: false
+    enabled: true
     every: 2000
     n_batches: 4
     t_mode: "fixed"
     t_values: [0, 10, 50, 200, 500, 900]
     metrics: ["mse", "psnr"]
     save_images: true
-    n_images: 16
+    n_images: 4
     max_val: 2.0
     log_prefix: "val/recon"
 
@@ -67,9 +66,9 @@ eval:
 
   grid:
     enabled: true
-    every: 10000
+    every: 2500
     sampler: ddim
-    nfe: 50
+    nfe: 25
     n_samples: 36
     save_images: true
 
@@ -80,7 +79,7 @@ eval:
     repeats: 20
     subset_size: 100
     sampler: ddim
-    nfe: 50
+    nfe: 25
     batch_size: 64
     real_split: "train"
     real_seed: 123
@@ -91,7 +90,7 @@ eval:
     every: 2500
     run_if_kid_improved_pct: 0.0
     sampler: ddpm
-    nfe: 50
+    nfe: 25
     n_samples: 5000
     fid_stats: "stats/cifar10_inception_train.npz"
 
@@ -111,9 +110,24 @@ logging:
   wandb:
     mode: online
     project: min_snr
-    run_name: "e11a-kid-sanity-baseline-ddim-nfe10-s5k-10k-bc64"
-    tags: ["e11","e11a","kid","sanity","baseline","constant","ddim","nfe10","s5k","10k","bc64"]
-    notes: "E11 KID sanity: baseline (constant weighting). Compute KID(pool=5k,repeats=20) + FID(5k) at end, DDIM NFE=10."
+    run_name: "e16-minsnr-linear-g5-nfe25-s5k-10k-bc64"
+    tags:
+      [
+        "e16",
+        "minsnr",
+        "linear",
+        "g5",
+        "cifar10",
+        "ema",
+        "nfe25",
+        "kid-ddim",
+        "fid-ddpm",
+        "s5k",
+        "10k",
+        "bc64",
+        "seeds3",
+      ]
+    notes: "E16 Min-SNR: linear beta schedule, minsnr weighting gamma=5.0, 3 seeds. NFE=25 for grid/KID/FID-milestone (DDIM for KID/grid, DDPM for FID milestone). Grid every 2500. Final disabled."
 
   tensorboard:
     flush_secs: 10
