@@ -1,11 +1,8 @@
 import subprocess
 import sys
 from pathlib import Path
-
-
-import subprocess
-import sys
-from pathlib import Path
+import pytest
+import torch
 
 
 def _run_cli_and_check(config_path: str, out_dir: str):
@@ -91,6 +88,9 @@ def test_cli_smoke_e6_minsnr_hutch_trace(tmp_path):
     )
         
 
+# has a lot of logging:
+
+@pytest.mark.skipif(not torch.cuda.is_available(), reason="CUDA not available")
 def test_cli_smoke_e11_kid(tmp_path):   
         path = tmp_path / "e11" 
         _run_cli_and_check(

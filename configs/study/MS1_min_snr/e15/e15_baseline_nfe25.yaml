@@ -65,7 +65,7 @@ eval:
 
   grid:
     enabled: true
-    every: 2500          # requested: 2500
+    every: 1000         
     sampler: ddim
     nfe: 25              # e15: NFE=25
     n_samples: 36
