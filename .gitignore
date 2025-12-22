@@ -12,6 +12,9 @@ build/
 venv/
 .env
 .ipynb_checkpoints/
+.zip
+.tar
+.tgz
 
 # Editors / OS
 .idea/
