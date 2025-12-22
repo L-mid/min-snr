@@ -3,7 +3,7 @@
 **ID:** E17  
 **Question:** How much do random seeds change under cosine (baseline)? 
 **Motivation:** Cosine previously lead to qualitivly better results, does this uphold vs multipule seeds? (Will also test for min-snr under cosine after)
-
+ 
 ## Config 
 - **Seeds:** `[1077, 11, 1]` (3 runs)
 - **Data:** CIFAR-10 full, `batch_size=64`, shuffle, workers=2
