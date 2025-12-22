@@ -1,5 +1,5 @@
 # Prereg: E15 — Seed sensitivity (constant/baseline, linear, NFE=25, 3 seeds)
-
+ 
 **ID:** E15  
 **Question:** How much do random seeds  
 **Motivation:** See how lower nfe changes seed spread of metrics compared to baseline.

@@ -55,7 +55,7 @@ eval:
     every: 2000
     n_batches: 4
     t_mode: "fixed"
-    t_values: [0, 10, 50, 200, 500, 900]
+    t_values: [0, 10, 50, 200, 500, 900, 1000]
     metrics: ["mse", "psnr"]
     save_images: true
     n_images: 4
