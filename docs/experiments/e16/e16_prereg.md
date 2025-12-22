@@ -36,7 +36,7 @@ Report across seeds:
 Seed-to-seed spread very small and stable like in baseline (min-snr does not collapse convergance), and low nfe brings down eval time for extremely similar metric results. This run is to measure the spread, not to win, and show that nfe=25 is comparable to nfe=50 in this regime. 
 
 ## Execution plan
-1. Run E15 with three seeds (one run per seed).
+1. Run E16 with three seeds (one run per seed).
 2. After completion, summarize the endpoints above + attach plots/tables.
 3. Examine the spread nfe causes, and degredation of metric quality at lower nfe. None/little effect is a valid (and desireable) result.
 
