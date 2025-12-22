@@ -16,7 +16,7 @@ venv/
 .env
 .ipynb_checkpoints/
 
-
+ 
 # Editors / OS
 .idea/
 .vscode/
