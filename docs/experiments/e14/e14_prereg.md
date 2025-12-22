@@ -1,5 +1,5 @@
 # Prereg: E14 — Seed sensitivity (min-snr, linear, NFE=50, 3 seeds)
-
+ 
 **ID:** E14  
 **Question:** How much do random seeds move our headline metrics under the minsnr config?  
 **Motivation:** See the min-snr seed spread in comparasion.

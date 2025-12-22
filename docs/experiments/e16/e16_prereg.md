@@ -1,5 +1,5 @@
 # Prereg: E16 — Seed sensitivity (min-snr, linear, NFE=25, 3 seeds)
-
+ 
 **ID:** E16  
 **Question:** How much do random seeds uphold under lower sampling nfe similary to baseline without metric and grid quality collapse?  
 **Motivation:** See how lower nfe changes seed spread of metrics compared to A) min-snr nfe=50, B) baseline nfe=25.
