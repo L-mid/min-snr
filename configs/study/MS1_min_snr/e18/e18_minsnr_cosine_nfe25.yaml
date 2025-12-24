@@ -5,7 +5,7 @@ seed: [1077, 11, 1]
 metric: val/fid
 
 _experiment:
-  name: "e16-minsnr-linear-g5-nfe25-s5k-10k-bc64"
+  name: "e18-minsnr-cosine-g5-nfe25-s5k-10k-bc64"
 
 device: null
 deterministic: true
@@ -28,7 +28,7 @@ ema:
 
 diffusion:
   enabled: true
-  beta_schedule: "linear" 
+  beta_schedule: "cosine"
 
 optim:
   optimizer: adam
@@ -55,7 +55,7 @@ eval:
     every: 2000
     n_batches: 4
     t_mode: "fixed"
-    t_values: [0, 10, 50, 200, 500, 900]
+    t_values: [0, 10, 50, 200, 500, 900, 1000]
     metrics: ["mse", "psnr"]
     save_images: true
     n_images: 4
@@ -110,12 +110,12 @@ logging:
   wandb:
     mode: online
     project: min_snr
-    run_name: "e16-minsnr-linear-g5-nfe25-s5k-10k-bc64"
+    run_name: "e18-minsnr-cosine-g5-nfe25-s5k-10k-bc64"
     tags:
       [
-        "e16",
+        "e18",
         "minsnr",
-        "linear",
+        "cosine",
         "g5",
         "cifar10",
         "ema",
@@ -127,7 +127,7 @@ logging:
         "bc64",
         "seeds3",
       ]
-    notes: "E16 Min-SNR: linear beta schedule, minsnr weighting gamma=5.0, 3 seeds. NFE=25 for grid/KID/FID-milestone (DDIM for KID/grid, DDPM for FID milestone). Grid every 2500. Final disabled."
+    notes: "E18 Min-SNR: cosine beta schedule, minsnr weighting gamma=5.0, 3 seeds. NFE=25 for grid/KID/FID-milestone (DDIM for KID/grid, DDPM for FID milestone). Grid every 2500. Final disabled."
 
   tensorboard:
     flush_secs: 10

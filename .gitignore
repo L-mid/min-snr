@@ -6,13 +6,17 @@ __pycache__/
 *.so
 *.dylib
 *.egg-info/
+*.zip
+*.tar
+*.tgz
 dist/
 build/
 .venv/
 venv/
 .env
 .ipynb_checkpoints/
-
+ 
+  
 # Editors / OS
 .idea/
 .vscode/

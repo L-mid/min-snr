@@ -1,11 +1,8 @@
 import subprocess
 import sys
 from pathlib import Path
-
-
-import subprocess
-import sys
-from pathlib import Path
+import pytest
+import torch
 
 
 def _run_cli_and_check(config_path: str, out_dir: str):
@@ -91,6 +88,7 @@ def test_cli_smoke_e6_minsnr_hutch_trace(tmp_path):
     )
         
 
+# has a lot of logging:
 def test_cli_smoke_e11_kid(tmp_path):   
         path = tmp_path / "e11" 
         _run_cli_and_check(
@@ -100,7 +98,7 @@ def test_cli_smoke_e11_kid(tmp_path):
         
         
 def test_cli_smoke_e13_3_seeds(tmp_path):   
-        path = "runs/e13" 
+        path = tmp_path / "e13" 
         _run_cli_and_check(
         "configs/study/MS1_min_snr/e13/e13_smoke.yaml",
         str(path),

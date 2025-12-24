@@ -52,9 +52,9 @@ e15 – Baseline (linear, NFE=25, 3 seeds).
 
 e16 – Min-SNR (linear, NFE=25, 3 seeds).
 
-e17 – Baseline (cosine, best γ from W2, both NFEs, 3 seeds).
+e17 – Baseline (cosine, NFE=25, 3 seeds).
 
-e18 – Min-SNR (cosine, best γ, both NFEs, 3 seeds).
+e18 – Min-SNR (cosine, best γ, NFE=25 3 seeds).
 
 
 ### wk 4

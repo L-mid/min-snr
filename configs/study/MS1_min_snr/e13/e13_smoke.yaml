@@ -109,9 +109,9 @@ logging:
   wandb:
     mode: online
     project: min_snr
-    run_name: "e11a-kid-sanity-baseline-ddim-nfe10-s5k-10k-bc64"
-    tags: ["e11","e11a","kid","sanity","baseline","constant","ddim","nfe10","s5k","10k","bc64"]
-    notes: "E11 KID sanity: baseline (constant weighting). Compute KID(pool=5k,repeats=20) + FID(5k) at end, DDIM NFE=10."
+    run_name: "e11-logging-test"
+    tags: ["test"]
+    notes: "e11 has been chosen to test wandb logging."
 
   tensorboard:
     flush_secs: 10
