@@ -69,4 +69,4 @@ e22 – NFE robustness check: run best Min-SNR config at a new NFE (e.g., 35 ste
 
 e23 – KID & other metric confirmation for best config.
 
-e24 – Tiny robustness or failure-mode experiment (e.g., starting from different init, or removing EMA) to see where Min-SNR breaks
+e24 – Tiny robustness or failure-mode experiment (e.g., starting from different init, or removing EMA) to see where Min-SNR breaks 
