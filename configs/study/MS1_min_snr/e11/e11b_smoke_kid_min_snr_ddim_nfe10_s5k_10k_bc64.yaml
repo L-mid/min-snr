@@ -90,7 +90,7 @@ eval:
     enabled: true
     every: 2          # 2k,4k,6k,8k,10k
     run_if_kid_improved_pct: 0.0
-    sampler: ddpm
+    sampler: ddim
     nfe: 2
     n_samples: 2
     fid_stats: "stats/cifar10_inception_train.npz"
