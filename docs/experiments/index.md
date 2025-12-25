@@ -60,13 +60,13 @@ e18 – Min-SNR (cosine, best γ, NFE=25 3 seeds).
 ### wk 4
 
 e19 – Hold-out baseline (best vanilla config, 3 new seeds).
-
+ 
 e20 – Hold-out Min-SNR (best γ, 3 new seeds).
 
 e21 – Hyperparam sensitivity probe: e.g., slight LR change for Min-SNR.
 
 e22 – NFE robustness check: run best Min-SNR config at a new NFE (e.g., 35 steps).
 
-e23 – KID & other metric confirmation for best config.
+e23 – KID & other metric confirmation for best config, used to explain model reletive to typical others.
 
-e24 – Tiny robustness or failure-mode experiment (e.g., starting from different init, or removing EMA) to see where Min-SNR breaks 
+e24 – Tiny robustness or failure-mode experiment to test where/if Min-SNR implicitly breaks 
