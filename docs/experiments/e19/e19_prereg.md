@@ -35,7 +35,7 @@ Report across seeds:
 - Sample evolution every 1000 steps (grids) vs FID/KID
 - Recon MSE/PSNR at fixed t values 
 
-## Hypothesis (directional)
+## Hypothesis 
 - Hold-out seed spread is similar to E17’s spread, and runtime is comparable.
 - If any future method claims improvement, it must exceed this hold-out noise floor.
 

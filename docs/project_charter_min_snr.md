@@ -26,7 +26,7 @@ These comparisons are at **matched compute**:
 
 ## 3. Baseline setup
 
-Baseline = current “good” DDPM setup from the previous noise-sched work:
+Baseline = current good DDPM setup from the previous noise-sched work:
 
 - **Data:** CIFAR-10, 32×32, full train set.
 - **Model:** `unet_cifar32` (same architecture as the earlier E1/E7 baselines).
