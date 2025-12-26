@@ -1,6 +1,6 @@
 # Pre-registration — e22: Holdout confirm @ NFE=35 (Min-SNR γ=5, cosine)
 
-## 1) Goal
+## Goal
 Validate that the **best Min-SNR config (γ=5, cosine β schedule)** remains strong on a holdout-style seed set when evaluated with a higher DDIM sampling budget (NFE=35), and quantify the quality ↔ wall-clock tradeoff vs the prior NFE=20 holdout (e20).
 
 ## Hypotheses
