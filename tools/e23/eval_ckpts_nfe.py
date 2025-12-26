@@ -4,7 +4,7 @@ E23 eval-only: load final checkpoints and compute FID/KID + recon@t + sample gri
 under a specified sampler + NFE (default: DDIM, NFE=50).
 
 Designed for GPU (Colab/Kaggle). Minimal assumptions about your existing eval pipeline.
-
+     
 Typical usage (baseline):
     python tools/e23/eval_ckpts_nfe.py \
     --label e19_baseline_eval \
