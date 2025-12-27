@@ -1,15 +1,15 @@
 # Prereg: E19 — Hold-out baseline (best vanilla config, 3 new seeds)
 
-**ID:** E19  
-**Question:** What is the performance + seed variability of my best vanilla config on 3 fresh hold-out seeds?  
+**ID:** E20  
+**Question:** What is the performance + seed variability of my best min-snr config on the 3 fresh hold-out seeds?  
 **Motivation:** Lock a clean, trustworthy reference point (noise floor + runtime) to judge later deltas against, no reusing tuning seeds.
 
 ## Config (vanilla baseline, locked)
-- **Seeds (hold-out):** `[2222, 3333, 4444]` (3 runs; *not used in E17/E18*)
+- **Seeds (hold-out):** `[2222, 3333, 4444]` (3 runs; same as e20)
 - **Data:** CIFAR-10 full, `batch_size=64`, shuffle, workers=2
 - **Model:** `unet_cifar32`, `base_channels=64`
 - **Diffusion:** `beta_schedule=cosine`
-- **Loss:** `weighting=constant` (vanilla)
+- **Loss:** `weighting=min-snr` 
 - **Train:** `total_steps=10_000`, `amp=true`, `grad_clip=1.0`
 - **EMA:** enabled, decay=0.999
 - **Determinism:** `deterministic=true`
@@ -35,12 +35,9 @@ Report across seeds:
 - Sample evolution every 1000 steps (grids) vs FID/KID
 - Recon MSE/PSNR at fixed t values 
 
-## Hypothesis (directional)
-- Hold-out seed spread is similar to E17’s spread, and runtime is comparable.
-- If any future method claims improvement, it must exceed this hold-out noise floor.
+## Hypothesis 
+- Hold-out seed spread is similar to E19’s spread despite being min-snr, and min-snr wins on final fid by 2-3 points.
 
-## Execution plan
-1. Run E19 with the three hold-out seeds (one run per seed).
-2. Summarize primary endpoints + seed stats, plus runtime breakdown and key plots.
+
 
 

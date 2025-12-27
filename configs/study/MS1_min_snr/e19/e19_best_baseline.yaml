@@ -106,28 +106,28 @@ logging:
   backends: ["wandb"]
   log_every_n_steps: 500
 
-wandb:
-  mode: online
-  project: min_snr
-  run_name: "e19-holdout-baseline-cosine-nfe25-s5k-10k-bc64"
-  tags:
-    [
-      "e19",
-      "holdout",
-      "baseline",
-      "cosine",
-      "constant",
-      "cifar10",
-      "ema",
-      "nfe25",
-      "kid-ddim",
-      "fid-ddpm",
-      "s5k",
-      "10k",
-      "bc64",
-      "seeds3",
-    ]
-  notes: "E19 hold-out baseline: best vanilla config (cosine beta, constant weighting), 3 new seeds. NFE=25 for grid/KID/FID-milestone (DDIM for KID/grid, DDPM for FID milestone). Grid/KID/FID-milestone every 2500. Final disabled."
+  wandb:
+    mode: online
+    project: min_snr
+    run_name: "e19-holdout-baseline-cosine-nfe25-s5k-10k-bc64"
+    tags:
+      [
+        "e19",
+        "holdout",
+        "baseline",
+        "cosine",
+        "constant",
+        "cifar10",
+        "ema",
+        "nfe25",
+        "kid-ddim",
+        "fid-ddpm",
+        "s5k",
+        "10k",
+        "bc64",
+        "seeds3",
+      ]
+    notes: "E19 hold-out baseline: best vanilla config (cosine beta, constant weighting), 3 new seeds. NFE=25 for grid/KID/FID-milestone (DDIM for KID/grid, DDPM for FID milestone). Grid/KID/FID-milestone every 2500. Final disabled."
 
   tensorboard:
     flush_secs: 10

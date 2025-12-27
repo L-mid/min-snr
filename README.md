@@ -10,17 +10,17 @@ This repo mainly provides **configs, docs, and plots** for the Min-SNR project.
 
 ---
 
-## Quickstart
+## info for cloning and setting up the enviroment for this repo found in: reproducibility.md & enviroment.md (complicated, I aplogize)
 
-### Clone with submodules
 
-```bash
-git clone --recurse-submodules https://github.com/L-mid/min-snr.git
-cd min-snr
-```
+## Samples: (FID ~70)
 
-### If you already cloned without submodules:
 
-```bash
-git submodule update --init --recursive
-```
+### baseline:
+
+![alt text](docs/assets/e19/e19_plots/grid.png)
+
+
+### min-snr:
+
+![alt text](docs/assets/e20/e20_plots/grid.png)

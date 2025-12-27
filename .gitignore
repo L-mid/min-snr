@@ -15,7 +15,7 @@ build/
 venv/
 .env
 .ipynb_checkpoints/
- 
+*.pt 
   
 # Editors / OS
 .idea/
