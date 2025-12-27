@@ -98,7 +98,7 @@ def test_cli_smoke_e11_kid(tmp_path):
         
         
 def test_cli_smoke_e13_3_seeds(tmp_path):   
-        path = tmp_path / "e13" 
+        path = "runs/e13" 
         _run_cli_and_check(
         "configs/study/MS1_min_snr/e13/e13_smoke.yaml",
         str(path),

@@ -1,0 +1,95 @@
+schema: study/v1
+study_name: min_snr
+out_dir: "runs/"
+seed: [2222, 3333, 4444]
+metric: val/fid
+
+_experiment:
+  name: "e24b-earlyt-minsnrG5-cosine-bc64"
+
+device: null
+deterministic: true
+clean_run: false
+
+data:
+  dataset: "cifar10"
+  subset: 4096
+  batch_size: 64
+  num_workers: 2
+  shuffle: true
+
+model:
+  name: "unet_cifar32"
+  base_channels: 64
+
+ema:
+  enabled: true
+  decay: 0.999
+
+diffusion:
+  enabled: true
+  beta_schedule: "cosine"
+
+optim:
+  optimizer: adam
+  lr: 1.0e-4
+
+train:
+  total_steps: 3000
+  grad_clip: 1.0
+  amp: true
+
+loss:
+  weighting: "minsnr"
+  minsnr_gamma: 5.0
+  t_min: 0
+  t_max: 50
+
+curvature:
+  enabled: false
+
+eval:
+  recon:
+    enabled: true
+    every: 1000
+    n_batches: 4
+    t_mode: "fixed"
+    t_values: [10, 25, 50]
+    metrics: ["mse", "psnr"]
+    save_images: true
+    n_images: 4
+    max_val: 2.0
+    log_prefix: "val/recon"
+
+  quick: true
+
+  grid:
+    enabled: true
+    every: 1000
+    sampler: ddim
+    nfe: 20
+    n_samples: 36
+    save_images: true
+
+  kid:
+    enabled: false
+  fid_milestone:
+    enabled: false
+  final:
+    enabled: false
+    at_end: false
+
+logging:
+  enable: true
+  backends: ["wandb"]
+  log_every_n_steps: 250
+  wandb:
+    mode: online
+    project: min_snr
+    run_name: "e24b-earlyt-minsnrG5-cosine-s3k-bc64"
+    tags: ["e24", "earlyt", "t0-50", "minsnr", "gamma5", "cosine", "cifar10", "ema", "nfe20", "s3k", "bc64", "seeds3"]
+    notes: "E24B: Same as E24A but Min-SNR γ=5. Watch mins_snr/weight_* stats + grad stats for collapse."
+
+  tensorboard:
+    flush_secs: 10
+
