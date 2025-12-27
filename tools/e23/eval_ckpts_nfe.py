@@ -254,7 +254,7 @@ def load_ckpt_into_model_(model: torch.nn.Module, ckpt_path: str, use_ema: bool)
 # ----------------------------
 
 def main():
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(allow_abbrev=False)
     ap.add_argument("--label", type=str, required=True)
     ap.add_argument("--cfg", type=str, required=True, help="YAML config (used to build model and schedule).")
     ap.add_argument("--out", type=str, required=True)
@@ -268,6 +268,13 @@ def main():
                     help="If set with --ckpt_release_*, infer asset names like seed_{seed}_last.pt.")
     ap.add_argument("--ckpt_pattern", type=str, default=None,
                     help="Optional fnmatch pattern to download multiple assets (e.g. 'seed_*_last.pt').")
+    ap.add_argument(
+    "--ckpt",
+    type=str,
+    action="append",
+    required=True,
+    help="Path to a checkpoint (.pt). Repeat --ckpt for multiple seeds.",
+)
 
     ap.add_argument("--device", type=str, default="cuda")
     ap.add_argument("--use_ema", action="store_true")
@@ -371,7 +378,7 @@ def main():
         rows.append({"seed": seed, "ckpt": ckpt_path, **res})
 
 
-                # ---- recon ----
+        # ---- recon ----
         if args.recon_batches > 0:
             val_loader = build_cifar10_val_loader(
                 batch_size=int(args.recon_batch),
